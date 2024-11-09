@@ -35,7 +35,6 @@ header h2{
 main{
     display: flex;
     justify-content: center;
-    height: 100vh;
 }
 
 .book_container{
@@ -43,13 +42,12 @@ main{
     align-items: center;
     flex-direction: column;
     text-align: center;   
-    margin-top: 32px;
-    margin-bottom: 62px;
     border: none;
     border-radius: 10px;
     background-color: #192d39;
     width: 500px;
-    height: 800px;
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
 
 .book_container h4{
@@ -109,7 +107,7 @@ footer img{
 }
 
 table{
-    width: 400px;
+    width: 100%;
 }
 
 .column_1{
@@ -121,6 +119,10 @@ table{
 .column_2{
     font-size: 16px;
     text-align: start;
+    max-width: 150px; /* Begrenze die maximale Breite */
+    word-wrap: break-word; /* Wörter umbrechen */
+    white-space: normal; /* Erlaubt Zeilenumbruch */
+    overflow-wrap: break-word; /* Wörter bei Bedarf umbrechen */
 }
 
 .price_like{
@@ -223,4 +225,9 @@ table{
 
 .space{
     width: 200px;
+}
+
+
+.grayscale{
+    filter: grayscale(0);
 }
