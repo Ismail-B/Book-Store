@@ -197,8 +197,10 @@ let message = [];
 let author = [];
 
 function renderBooks() {
+  getFromLocalStorage();
   for (let index = 0; index < books.length; index++) {
   bookContainerTemplate(index);    
+  commentTemplate(index);
   }
 }
 
@@ -229,85 +231,35 @@ function toggleLike() {
   }
 }
 
-function bookContainerTemplate(index) {
-  getFromLocalStorage();
-  let bookContainer = document.getElementById("main");
-    bookContainer.innerHTML += `<div id="main" class="book_container">
-            <div><h4>${books[index].name}</h4></div>
-            <div><img src="./assets/img/book.png" alt=""></div>
-            <div class="price_like">
-                <p>${books[index].price} €</p>
-                <div id="like_img" class="likes">
-                    <p>${books[index].likes}</p>
-                    <img  onclick="toggleLike()" src="./assets/icons/heart.png" alt="Herz">
-                </div>
-            </div>
-            <table>
-                <tr>
-                    <td class="column_1">Author:</td>
-                    <td class="column_2">${books[index].author}</td>
-                </tr>
-                <tr>
-                    <td class="column_1">Erscheinungsjahr:</td>
-                    <td class="column_2">${books[index].publishedYear}</td>
-                </tr>
-                <tr>
-                    <td class="column_1">Genre:</td>
-                    <td class="column_2">${books[index].genre}</td>
-                </tr>
-            </table>
-            <div class="comment_sektion">
-                <h5>Kommentare:</h5>
-                <div id="comment" class="scrollbar">
-                </div>
-                <div class="comment_input">
-                    <input id="name_input" type="text" placeholder="Dein Name">
-                    <input id="message_input" placeholder="Schreib deinen Kommentar..." type="text">
-                    <img onclick="addComment()" src="./assets/icons/send_btn.png" alt="Sendbutton">
-                </div>
-            </div>
-            </div>`;
-}
 
-function addComment() {
-  let messageInputRef = document.getElementById('message_input');
+function addComment(index) {
+  let messageInputRef = document.getElementById('message_input'+index);
   let messageInput = messageInputRef.value;
-  let nameInputRef = document.getElementById('name_input')
+  let nameInputRef = document.getElementById('name_input'+index)
   let nameInput = nameInputRef.value;
 
-  message.push(messageInput);
-  author.push(nameInput);
-
+  // books[index].comments.push(`{name:${nameInput},comment:${messageInput}}`);
+  // books[index].comments.name = nameInput;
+  // books[index].comments.comment = messageInput;
+  let newContent = { name:nameInput,comment:messageInput}
+  books[index].comments.push(newContent);
   messageInputRef.value = "";
-  console.log(message);
-  console.log(author);
+  console.log(books);
   saveToLocalStorage();
-  renderMessages();
+  commentTemplate(index);
 }
 
 
 function saveToLocalStorage() {
-  localStorage.setItem("message", JSON.stringify(message));
-  localStorage.setItem("author", JSON.stringify(author));
+  localStorage.setItem("books", JSON.stringify(books));
 }
 
 function getFromLocalStorage() {
-  let myArrMessage = JSON.parse(localStorage.getItem("message"));
-  let myArrAuthor = JSON.parse(localStorage.getItem("author"));
+  let myArrMessage = JSON.parse(localStorage.getItem("books"));
 
-  if (myArrMessage !== null || myArrAuthor !== null) {
-    message = myArrMessage;
-    author = myArrAuthor;
+  if (myArrMessage) {
+    books = myArrMessage;
   }
+
 }
 
-function renderMessages() {
-  getFromLocalStorage();
-  let contentRef;
-  let notesArray;
-  let getTemplateFunction;
-
-  contentRef = document.getElementById("message");
-  notesArray = message;
-  getTemplateFunction = author;
-}

@@ -17,6 +17,10 @@ header{
     background-color: #11212C;
 }
 
+span{
+    font-size: 16px;
+}
+
 p{
     font-size: 16px;
 }
@@ -107,7 +111,7 @@ footer img{
 }
 
 table{
-    width: 100%;
+    width: 400px;
 }
 
 .column_1{
@@ -123,6 +127,7 @@ table{
     word-wrap: break-word; /* Wörter umbrechen */
     white-space: normal; /* Erlaubt Zeilenumbruch */
     overflow-wrap: break-word; /* Wörter bei Bedarf umbrechen */
+    text-align: end;
 }
 
 .price_like{
@@ -167,12 +172,17 @@ table{
 }
 
 .comment_input input{
+    color: rgb(226, 225, 225);
     width: 350px;
     background-color: #2d424d;
     border-top: none;
     border-left: none;
     border-right: none;
     border-radius: 3px;
+}
+
+.comment_input input::placeholder{
+    color: rgb(213, 211, 211);
 }
 
 .comment_input button{
