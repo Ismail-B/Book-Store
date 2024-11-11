@@ -20,9 +20,9 @@ function bookContainerTemplate(index) {
             <div><img src="./assets/img/book.png" alt=""></div>
             <div class="price_like">
                 <p>${books[index].price} €</p>
-                <div id="like_img" class="likes">
-                    <p id="likeCounter">${books[index].likes}</p>
-                    <img  onclick="toggleLike()" src="./assets/icons/heart.png" alt="Herz">
+                <div id="like_img${index}" class="likes">
+                    <p>${books[index].likes}</p>
+                    <img id="likeCounter${index}" onclick="toggleLike(${index})" src="./assets/icons/heart.png" alt="Herz">
                 </div>
             </div>
             <table>
