@@ -160,7 +160,6 @@ table{
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    border-bottom: 4px, solid rgb(136, 136, 207);
     margin-bottom: 32px;
 }
 
@@ -194,6 +193,13 @@ table{
 
 .comment_input img:hover{
     filter: invert(0);
+}
+
+.item {
+    flex: 1; /* verteilt den Platz gleichmäßig */
+    text-align: center; /* optional, für eine zentrierte Darstellung des Inhalts */
+    padding: 10px;
+    box-sizing: border-box; /* damit padding keinen zusätzlichen Platz einnimmt */
 }
 
 .comment_input img{
@@ -230,7 +236,13 @@ table{
 .comments{
     display: flex;
     justify-content: space-between;
-    text-align: start;
+    text-align: left;
+    padding: 10px;
+}
+
+.comment_sektion span{
+    display: flex;
+    flex: 1;
 }
 
 .space{
@@ -238,6 +250,61 @@ table{
 }
 
 
+
+
 .grayscale{
     filter: grayscale(0);
+}
+
+
+@media(max-width:530px){
+    h2{
+        font-size: 40px;
+    }
+
+    .book_container{
+        width: 350px;
+        font-size: 20px;
+    }
+
+    .price_like{
+        width: 275px;
+    }
+
+    .comment_sektion{
+        width: 275px;
+        font-size: 20px;
+
+    }
+
+    header img {
+        width: 80px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .comment_input{
+        width: 270px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+
+    .comment_input input{
+        width: 270px;
+    }
+
+    span{
+        font-size: 12px;
+    }
+
+    table{
+        width: 275px;
+    }
+}
+
+@media(max-width:380px){
+    .book_container{
+        width: 290px;
+    }
 }

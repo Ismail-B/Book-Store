@@ -1,5 +1,7 @@
 function renderBooks() {
   getFromLocalStorage();
+  let bookContainer = document.getElementById("main");
+  bookContainer.innerHTML = "";
   for (let index = 0; index < books.length; index++) {
   bookContainerTemplate(index);    
   commentTemplate(index);
@@ -10,35 +12,24 @@ function toggleLike(index) {
   let element = document.getElementById("like_img"+index);
   element.classList.toggle("grayscale");
 
-  // Den Style des Elements abrufen
-  let style = window.getComputedStyle(element);
-  // Filter-Wert rausziehen
-  let filterValue = style.filter;
-  // Den grayscale-Wert finden
-  let grayscaleMatch = filterValue.match(/grayscale\(([^)]+)\)/);
-
-  if (grayscaleMatch) {
-
-    // Den grayscale-Wert zu einer Zahl umwandeln
-    let grayscaleValue = parseFloat(grayscaleMatch[1]);
-    if (grayscaleValue > 0) {
-      books[index].likes = books[index].likes - 1;
-      books[index].liked = false;
-      console.log("nicht geliked");
-      console.log(books[index].likes);
-    } else {
-      books[index].likes = books[index].likes + 1;
+  if (books[index].liked) {
+    books[index].liked = false;
+    books[index].likes--;
+    }else{
       books[index].liked = true;
-      console.log("geliked");
-      console.log(books[index].likes);
-      
+      books[index].likes++;
     }
-  } else {
-    console.log("Kein grayscale-Filter gefunden");
-  }
+
   saveToLocalStorage();
+  renderBooks();
 }
 
+function checkLikes(index) {
+  let element = document.getElementById("like_img"+index);
+  if (books[index].liked) {
+    element.classList.add("grayscale");
+  }
+}
 
 function addComment(index) {
   let messageInputRef = document.getElementById('message_input'+index);

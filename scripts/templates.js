@@ -13,7 +13,6 @@ function commentTemplate(index) {
 function bookContainerTemplate(index) {
   getFromLocalStorage();
 
-  
   let bookContainer = document.getElementById("main");
     bookContainer.innerHTML += `<div class="book_container">
             <div><h4>${books[index].name}</h4></div>
@@ -22,7 +21,7 @@ function bookContainerTemplate(index) {
                 <p>${books[index].price} €</p>
                 <div id="like_img${index}" class="likes">
                     <p>${books[index].likes}</p>
-                    <img id="likeCounter${index}" onclick="toggleLike(${index})" src="./assets/icons/heart.png" alt="Herz">
+                    <img id="likeCounter${index}" onload="checkLikes(${index})" onclick="toggleLike(${index})" src="./assets/icons/heart.png" alt="Herz">
                 </div>
             </div>
             <table>
